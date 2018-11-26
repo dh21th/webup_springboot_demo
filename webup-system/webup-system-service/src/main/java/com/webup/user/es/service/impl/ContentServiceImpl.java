@@ -29,19 +29,22 @@ public class ContentServiceImpl implements ContentService {
      * 保存内容到ES
      */
     @Override
-    public Long save(Content entity) {
+    public boolean save(Content entity) {
         Content entityResult = contentRepository.save(entity);
-        return entityResult.getId();
+        return true;
     }
 
     @Override
-    public Long modify(Content content) {
-        return null;
+    public boolean modify(Content content) {
+        if(null==content.getId()){
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public Long deleteById(Long Id) {
-        return null;
+    public boolean deleteById(Long Id) {
+        return true;
     }
 
     @Override

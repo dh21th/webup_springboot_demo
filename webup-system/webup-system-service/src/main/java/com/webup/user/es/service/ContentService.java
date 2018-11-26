@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface ContentService {
 
-    Long save(Content content);
-    Long modify(Content content);
+    boolean save(Content content);
+    boolean modify(Content content);
     Long selectById(Long Id);
-    Long deleteById(Long Id);
+    boolean deleteById(Long Id);
     List<Content> search(int pageNumber, int pageSize, String searchContent);
 
 }
