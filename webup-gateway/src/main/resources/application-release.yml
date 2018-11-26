@@ -1,0 +1,21 @@
+management:
+  security:
+    enabled: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8900/eureka/
+    registry-fetch-interval-seconds: 5
+    registryFetchIntervalSeconds: 5
+    healthcheck:
+          enabled: true
+  instance:
+    hostname: 192.168.159.129
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 30
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+
+secret-key:
+  pay-service-key: YZWL!@#$%^&*()_+
+  msg-service-key: YZWL!@#$%^&*()_+

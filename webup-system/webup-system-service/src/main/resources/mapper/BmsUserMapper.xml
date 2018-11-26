@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webup.user.bms.mapper.BmsUserMapper">
+    <resultMap id="BmsUserMap" type="com.webup.user.bms.pojo.BmsUser">
+        <id column="id" property="id"/>
+        <result column="login_name" property="loginName"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="loginpass" property="loginpass"/>
+        <result column="headimg" property="headimg"/>
+        <result column="sex" property="sex"/>
+        <result column="qq" property="qq"/>
+        <result column="wxname" property="wxname"/>
+        <result column="fax" property="fax"/>
+        <result column="fixed_phone" property="fixedPhone"/>
+        <result column="user_address" property="userAddress"/>
+        <result column="reg_time" property="regTime"/>
+        <result column="bined_phone_flag" property="binedPhoneFlag"/>
+        <result column="bined_email_flag" property="binedEmailFlag"/>
+        <result column="allow_login" property="allowLogin"/>
+        <result column="verifyed_flag" property="verifyedFlag"/>
+        <result column="user_name" property="userName"/>
+        <result column="phonevsid" property="phonevsid"/>
+        <result column="cername" property="cername"/>
+        <result column="signimgfile" property="signimgfile"/>
+        <result column="salt" property="salt"/>
+    </resultMap>
+    <!-- 数据库字段的集合 -->
+    <sql id="Base_Column_List">
+        id, login_name, phone, email, loginpass, headimg, sex, qq, wxname, reg_time,allow_login,user_name,
+        phonevsid,salt
+    </sql>
+
+    <!-- 对象属性的集合 -->
+    <sql id="Base_Property_List">
+        #{id}, #{loginName}, #{phone}, #{email}, #{loginpass}, #{headimg}, #{sex}, #{qq}, #{wxname}, #{fax},
+        #{fixedPhone}, #{userAddress}, #{regTime}, #{binedPhoneFlag}, #{binedEmailFlag}, #{allowLogin}, #{verifyedFlag},
+        #{userName}, #{phonevsid}, #{cername}, #{signimgfile}, #{salt}
+    </sql>
+
+    <!-- 根据主键删除 -->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE
+        FROM bms_user
+        WHERE
+        id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <!--全部插入-->
+    <insert id="insert" parameterType="com.webup.user.bms.pojo.BmsUserUpdateParams">
+        INSERT INTO bms_user (
+        <include refid="Base_Column_List"/>
+        ) VALUES (
+        <include refid="Base_Property_List"/>
+        )
+    </insert>
+
+    <!--部分字段插入-->
+    <insert id="insertSelective" keyProperty="id" parameterType="com.webup.user.bms.pojo.BmsUserUpdateParams"
+            useGeneratedKeys="true">
+        INSERT INTO bms_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="loginName != null">
+                login_name,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="loginpass != null">
+                loginpass,
+            </if>
+            <if test="headimg != null">
+                headimg,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="qq != null">
+                qq,
+            </if>
+            <if test="wxname != null">
+                wxname,
+            </if>
+            <if test="fax != null">
+                fax,
+            </if>
+            <if test="fixedPhone != null">
+                fixed_phone,
+            </if>
+            <if test="userAddress != null">
+                user_address,
+            </if>
+            <if test="regTime != null">
+                reg_time,
+            </if>
+            <if test="binedPhoneFlag != null">
+                bined_phone_flag,
+            </if>
+            <if test="binedEmailFlag != null">
+                bined_email_flag,
+            </if>
+            <if test="allowLogin != null">
+                allow_login,
+            </if>
+            <if test="verifyedFlag != null">
+                verifyed_flag,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="phonevsid != null">
+                phonevsid,
+            </if>
+            <if test="cername != null">
+                cername,
+            </if>
+            <if test="signimgfile != null">
+                signimgfile,
+            </if>
+            <if test="salt != null">
+                salt,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="loginName != null">
+                #{loginName},
+            </if>
+            <if test="phone != null">
+                #{phone},
+            </if>
+            <if test="email != null">
+                #{email},
+            </if>
+            <if test="loginpass != null">
+                #{loginpass},
+            </if>
+            <if test="headimg != null">
+                #{headimg},
+            </if>
+            <if test="sex != null">
+                #{sex},
+            </if>
+            <if test="qq != null">
+                #{qq},
+            </if>
+            <if test="wxname != null">
+                #{wxname},
+            </if>
+            <if test="fax != null">
+                #{fax},
+            </if>
+            <if test="fixedPhone != null">
+                #{fixedPhone},
+            </if>
+            <if test="userAddress != null">
+                #{userAddress},
+            </if>
+            <if test="regTime != null">
+                #{regTime},
+            </if>
+            <if test="binedPhoneFlag != null">
+                #{binedPhoneFlag},
+            </if>
+            <if test="binedEmailFlag != null">
+                #{binedEmailFlag},
+            </if>
+            <if test="allowLogin != null">
+                #{allowLogin},
+            </if>
+            <if test="verifyedFlag != null">
+                #{verifyedFlag},
+            </if>
+            <if test="userName != null">
+                #{userName},
+            </if>
+            <if test="phonevsid != null">
+                #{phonevsid},
+            </if>
+            <if test="cername != null">
+                #{cername},
+            </if>
+            <if test="signimgfile != null">
+                #{signimgfile},
+            </if>
+            <if test="salt != null">
+                #{salt},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据主键查询 -->
+    <select id="selectById" resultMap="BmsUserMap" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM bms_user
+        WHERE
+        id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <!--部分字段更新-->
+    <update id="updateById" parameterType="com.webup.user.bms.pojo.BmsUserUpdateParams">
+        UPDATE bms_user
+        <set>
+            <if test="loginName != null">
+                login_name = #{loginName},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="loginpass != null">
+                loginpass = #{loginpass},
+            </if>
+            <if test="headimg != null">
+                headimg = #{headimg},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="qq != null">
+                qq = #{qq},
+            </if>
+            <if test="wxname != null">
+                wxname = #{wxname},
+            </if>
+            <if test="fax != null">
+                fax = #{fax},
+            </if>
+            <if test="fixedPhone != null">
+                fixed_phone = #{fixedPhone},
+            </if>
+            <if test="userAddress != null">
+                user_address = #{userAddress},
+            </if>
+            <if test="regTime != null">
+                reg_time = #{regTime},
+            </if>
+            <if test="binedPhoneFlag != null">
+                bined_phone_flag = #{binedPhoneFlag},
+            </if>
+            <if test="binedEmailFlag != null">
+                bined_email_flag = #{binedEmailFlag},
+            </if>
+            <if test="allowLogin != null">
+                allow_login = #{allowLogin},
+            </if>
+            <if test="verifyedFlag != null">
+                verifyed_flag = #{verifyedFlag},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName},
+            </if>
+            <if test="phonevsid != null">
+                phonevsid = #{phonevsid},
+            </if>
+            <if test="cername != null">
+                cername = #{cername},
+            </if>
+            <if test="signimgfile != null">
+                signimgfile = #{signimgfile},
+            </if>
+            <if test="salt != null">
+                salt = #{salt},
+            </if>
+        </set>
+        WHERE
+        id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <!-- 查询 -->
+    <select id="selectByParams" parameterType="com.webup.user.bms.pojo.BmsUserQueryParams" resultMap="BmsUserMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM bms_user
+        <where>
+            <if test="loginName != null">
+                AND login_name = #{loginName}
+            </if>
+            <if test="phone != null">
+                AND phone = #{phone}
+            </if>
+            <if test="email != null">
+                AND email = #{email}
+            </if>
+            <if test="loginpass != null">
+                AND loginpass = #{loginpass}
+            </if>
+            <if test="headimg != null">
+                AND headimg = #{headimg}
+            </if>
+            <if test="sex != null">
+                AND sex = #{sex}
+            </if>
+            <if test="qq != null">
+                AND qq = #{qq}
+            </if>
+            <if test="wxname != null">
+                AND wxname = #{wxname}
+            </if>
+            <if test="fax != null">
+                AND fax = #{fax}
+            </if>
+            <if test="regTime != null">
+                AND reg_time = #{regTime}
+            </if>
+            <if test="allowLogin != null">
+                AND allow_login = #{allowLogin}
+            </if>
+            <if test="verifyedFlag != null">
+                AND verifyed_flag = #{verifyedFlag}
+            </if>
+            <if test="userName != null">
+                AND user_name = #{userName}
+            </if>
+            <if test="phonevsid != null">
+                AND phonevsid = #{phonevsid}
+            </if>
+            <if test="salt != null">
+                AND salt = #{salt}
+            </if>
+        </where>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+    </select>
+    <select id="selectCountByParams" parameterType="com.webup.user.bms.pojo.BmsUserQueryParams"
+            resultType="java.lang.Long">
+        SELECT
+        COUNT(0)
+        FROM bms_user
+        <where>
+            <if test="loginName != null">
+                AND login_name = #{loginName}
+            </if>
+            <if test="loginpass != null">
+                AND loginpass = #{loginpass}
+            </if>
+            <if test="headimg != null">
+                AND headimg = #{headimg}
+            </if>
+            <if test="userName != null">
+                AND user_name = #{userName}
+            </if>
+            <if test="phone != null">
+                AND phone = #{phone}
+            </if>
+            <if test="sex != null">
+                AND sex = #{sex}
+            </if>
+            <if test="email != null">
+                AND email = #{email}
+            </if>
+            <if test="qq != null">
+                AND qq = #{qq}
+            </if>
+            <if test="wxname != null">
+                AND wxname = #{wxname}
+            </if>
+            <if test="regTime != null">
+                AND reg_time = #{regTime}
+            </if>
+            <if test="allowLogin != null">
+                AND allow_login = #{allowLogin}
+            </if>
+            <if test="phonevsid != null">
+                AND phonevsid = #{phonevsid}
+            </if>
+            <if test="salt != null">
+                AND salt = #{salt}
+            </if>
+            <if test="roleId != null">
+                AND role_id = #{roleId}
+            </if>
+            <if test="updatorId != null">
+                AND updator_id = #{updatorId}
+            </if>
+        </where>
+    </select>
+</mapper>

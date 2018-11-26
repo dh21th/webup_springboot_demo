@@ -1,0 +1,46 @@
+server:
+  port: 9102
+  context-path: /webup_system
+
+management:
+  security:
+    enabled: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8900/eureka/
+
+spring:
+    application:
+        name: webup-system
+    profiles:
+        active: local
+    data:
+        elasticsearch:
+          clusterName: elastic-cky
+          clusterNodes: 10.6.101.50:9300
+
+#feign:
+#  hystrix:
+#    enabled: true
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml,classpath:mapper/ext/*.xml
+  type-aliases-package: com.webup.user.bms.pojo
+  configuration:
+    mapUnderscoreToCamelCase: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#pagehelper
+pagehelper:
+    helperDialect: mysql
+    offsetAsPageNum: true
+    rowBoundsWithCount: true
+    pageSizeZero: true
+    reasonable: false
+    params: pageNum=start;pageSize=limit;
+    supportMethodsArguments: true
+    autoRuntimeDialect: false
+    closeConn: true
+

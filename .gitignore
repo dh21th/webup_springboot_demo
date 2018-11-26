@@ -1,0 +1,11 @@
+.svn/
+webup-core/target/
+webup-mybatis-freemarker/target/
+webup-parent/.idea/
+webup-eureka-server/target/
+webup-system/webup-system-interface-client/target/
+webup-system/webup-system-service/target/
+webup-system/webup-system-common/target/
+webup-gateway/target/
+webup-mybatis-freemarker/
+webup-system/webup-system-interface/target/

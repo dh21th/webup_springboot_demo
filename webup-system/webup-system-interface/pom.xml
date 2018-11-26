@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.webup.system</groupId>
+    <artifactId>webup-system-interface</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>webup-system-interface</name>
+    <description>system接口微服务</description>
+
+    <parent>
+        <groupId>com.webup.system</groupId>
+        <artifactId>webup-system</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.webup.system</groupId>
+            <artifactId>webup-system-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+       <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+           <groupId>org.springframework.cloud</groupId>
+           <artifactId>spring-cloud-openfeign-core</artifactId>
+           <!--<version>RELEASE</version>-->
+           <scope>compile</scope>
+       </dependency>
+    </dependencies>
+
+
+    <build>
+
+        <!--<defaultGoal>install</defaultGoal>      &lt;!&ndash; 设置默认的goal或phase 当什么都没有指定是执行该目标或阶段&ndash;&gt;
+        <directory>${project.basedir}/target</directory>    &lt;!&ndash; 编译后的文件目标位置 路径都是绝对路径&ndash;&gt;
+        <outputDirectory>${project.build.directory}/classes</outputDirectory>     &lt;!&ndash; 编译后的文件输出位置  &ndash;&gt;
+        <finalName>${project.artifactId}-${project.version}</finalName>    &lt;!&ndash; 编译打包的文件名称 &ndash;&gt;
+        <testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>    &lt;!&ndash; 测试编译后的文件输出位置  &ndash;&gt;
+        <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>    &lt;!&ndash; 需要编译源文件存放位置 &ndash;&gt;
+        <scriptSourceDirectory>src/main/scripts</scriptSourceDirectory>    &lt;!&ndash; 需要编译脚本源文件存放位置 &ndash;&gt;
+        <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>    &lt;!&ndash; 编译的测试源文件存放位置  &ndash;&gt;
+        <resources>     &lt;!&ndash; 指定了工程的资源存放位置，这些资源不会被编译但是她是捆绑在这个项目中的，如项目要求的配置文件configuration.xml等，这些文件需要在打包同时要打入包中 &ndash;&gt;
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>    &lt;!&ndash; 工程资源存放位置  &ndash;&gt;
+                <targetPath>META-INF/plexus</targetPath>    &lt;!&ndash; 打包后资源的位置 &ndash;&gt;
+                <filtering>false</filtering>
+                <includes>         &lt;!&ndash; 指定需要打包的资源 &ndash;&gt;
+                    <include>configuration.xml</include>
+                </includes>
+                <excludes>    &lt;!&ndash; 指定不需要打包的资源 &ndash;&gt;
+                    <exclude>**/*.properties</exclude>
+                </excludes>
+            </resource>
+        </resources>-->
+
+        <!--<directory>${project.basedir}/targetInerface</directory>-->
+        <!--<resources>     &lt;!&ndash; 指定了工程的资源存放位置，这些资源不会被编译但是她是捆绑在这个项目中的，如项目要求的配置文件configuration.xml等，这些文件需要在打包同时要打入包中 &ndash;&gt;
+            <resource>
+                <directory>${project.basedir}/src/main/resourcesClient</directory>    &lt;!&ndash; 工程资源存放位置  &ndash;&gt;
+            </resource>
+        </resources>-->
+       <!-- <finalName>${project.artifactId}-${project.version}-interface</finalName>-->
+
+        <plugins>
+           <!-- <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <excludes>
+                        <exclude>${project.build.directory}/generated-sources/annotations</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        &lt;!&ndash; normal compile and generation of other classes to standard location (implicit, you shouldn't need that) &ndash;&gt;
+                        <id>default-compile</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        &lt;!&ndash; Generates Test-Helper-Class into ${project.build.directory}/generated-test-sources/test-annotations WITHOUT compiling it &ndash;&gt;
+                        <id>compile-TestHelperClass</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <annotationProcessors>
+                                <annotationProcessor>com.webup.annotation.YzFeignClientImplProcessor</annotationProcessor>
+                            </annotationProcessors>
+                            <generatedSourcesDirectory>${project.build.directory}/generated-test-sources/test-annotations</generatedSourcesDirectory>
+                            &lt;!&ndash; generated class depends on test-scope libs, so don't compile now: proc:only DISABLES compilation of generated classes&ndash;&gt;
+                            <proc>only</proc>
+                        </configuration>
+                    </execution>
+                    &lt;!&ndash; implicit test-compile:testCompile &ndash;&gt;
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                &lt;!&ndash; adds source-dir during generate-test-sources:add-test-source
+                     so that the path to our generated class is now known to the
+                     compiler during test-compile:testCompile &ndash;&gt;
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-test-sources/test-annotations</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+
+-->
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.5.1</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+                <!--<excludes>
+                    <exclude>${project.build.directory}/generated-sources/annotations/**/*.java</exclude>
+                </excludes>-->
+            </configuration>
+
+
+            <!--<executions>
+                <execution>
+                    <phase>generate-sources</phase>
+                    <configuration>
+                        <sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
+                    </configuration>
+                </execution>
+            </executions>-->
+
+        </plugin>
+
+
+
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+</project>

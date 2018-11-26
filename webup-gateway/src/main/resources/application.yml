@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: webup-gateway
+  profiles:
+      active: local
+
+server:
+  port: 9050
+#  context-path: /yz-gateway
+
+
+ribbon:
+  ServerListRefreshInterval: 5000
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+feign:
+  httpclient:
+    enabled: true
+
+# 请求字段包含这些，需要对参数解密
+key-word-decrypt: realName, phone, idCard, bankCardNo, money, id, merUserId

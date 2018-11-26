@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webup.user.bms.mapper.BmsUserMapper">
+
+    <!-- 查询根据用户名 -->
+    <select id="getUserByLoginName" parameterType="com.webup.user.bms.pojo.BmsUserQueryParams" resultMap="BmsUserMap">
+            SELECT
+            *
+            FROM bms_user
+            WHERE
+            login_name = #{loginName,jdbcType=VARCHAR}
+            limit 0,1
+        </select>
+</mapper>

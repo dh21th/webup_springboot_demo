@@ -1,0 +1,28 @@
+#server:
+#  port: 9101
+#  context-path: /yizhao-core
+#
+#spring:
+#  application:
+#    name: yizhao-core
+##  profiles:
+##    active: local
+#
+##management:
+##  security:
+##    enabled: false
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:9000/eureka/
+##    registry-fetch-interval-seconds: 5
+##    registryFetchIntervalSeconds: 5
+##    healthcheck:
+##          enabled: true
+
+send-msg: false
+vaildate-code: 000000
+uploadpath: /opt/server/upload/
+contractpath: contractFile/
+yunshangWriteBackUrl: http://127.0.0.1:8084/api/ys/esign/contract
