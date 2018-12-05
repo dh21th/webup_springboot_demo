@@ -67,6 +67,19 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
+        <!--&lt;!&ndash; swagger生成接口API &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>io.springfox</groupId>-->
+            <!--<artifactId>springfox-swagger2</artifactId>-->
+            <!--<version>2.7.0</version>-->
+        <!--</dependency>-->
+
+        <!--&lt;!&ndash; 接口API生成html文档 &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>io.springfox</groupId>-->
+            <!--<artifactId>springfox-swagger-ui</artifactId>-->
+            <!--<version>2.6.1</version>-->
+        <!--</dependency>-->
 
         <!--<dependency>
             <groupId>org.springframework.cloud</groupId>

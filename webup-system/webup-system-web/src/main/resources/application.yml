@@ -18,9 +18,19 @@ spring:
         active: local
     data:
         elasticsearch:
-          clusterName: elastic-cky
-          clusterNodes: 10.6.101.50:9300
-
+          cluster_name: zsy
+          cluster_nodes: 10.6.101.50:9300
+          properties:
+            transport:
+              tcp:
+                connect_timeout: 120s
+          repositories:
+            enabled: true
+elasticsearch:
+  ip: 10.6.101.50
+  port: 9300
+  pool: 5
+  cluster_name: zsy
 #feign:
 #  hystrix:
 #    enabled: true

@@ -9,3 +9,4 @@ webup-system/webup-system-common/target/
 webup-gateway/target/
 webup-mybatis-freemarker/
 webup-system/webup-system-interface/target/
+webup-system/webup-system-web/target/

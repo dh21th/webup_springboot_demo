@@ -1,12 +1,12 @@
-redis:
-  host: 127.0.0.1
-  port: 6379
-  password: root
-  maxTotal: 1024
-  maxIdle: 200
-  timeout: 10000
-  maxWaitMillis: 10000
-  testOnBorrow: false
+#redis:
+#  host: 127.0.0.1
+#  port: 6379
+#  password: root
+#  maxTotal: 1024
+#  maxIdle: 200
+#  timeout: 10000
+#  maxWaitMillis: 10000
+#  testOnBorrow: false
 
 spring:
     datasource:
@@ -38,3 +38,9 @@ spring:
           #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
           pool-prepared-statements: false
           max-pool-prepared-statement-per-connection-size: 20
+
+send-msg: false
+vaildate-code: 000000
+uploadpath: /opt/server/upload/
+contractpath: contractFile/
+yunshangWriteBackUrl: http://127.0.0.1:8084/api/ys/esign/contract

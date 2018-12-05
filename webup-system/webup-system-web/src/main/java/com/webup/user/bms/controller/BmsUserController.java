@@ -10,10 +10,25 @@ import com.webup.soa.utils.JsonResultUtil;
 import com.webup.soa.utils.ValidatorUtil;
 import com.webup.user.bms.pojo.BmsUser;
 import com.webup.user.bms.pojo.BmsUserQueryParams;
+import com.webup.user.es.repositories.Content;
+import com.webup.user.es.service.ContentService;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
+import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 //import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -29,6 +44,10 @@ public class BmsUserController extends AbstractBaseController{
 
     @Resource
     private BmsUserService bmsUserService;
+    @Autowired
+    private ElasticsearchTemplate elasticsearchTemplate;
+    @Resource
+    private ContentService contentService;
 
     /**
      * 列表
@@ -37,7 +56,21 @@ public class BmsUserController extends AbstractBaseController{
      */
 //    @ResponseBody
     @RequestMapping("list")
-    public String list() {
+    public String list(Pageable pageable) {
+        Content content = contentService.getById(1L);
+
+//        QueryBuilder queryBuilder = QueryBuilders.commonTermsQuery("id","1");
+//        SearchResponse response = elasticsearchTemplate.getClient().prepareSearch("article").setQuery(queryBuilder).get();
+//        System.out.println(response.getHits().getTotalHits());
+//        for (SearchHit searchHit: response.getHits()) {
+//            System.out.println(searchHit);
+//        }
+//        SearchQuery searchQuery2= new NativeSearchQueryBuilder().withQuery(matchAllQuery()).build();
+//        elasticsearchTemplate.queryForList(searchQuery2, Content.class);
+
+//        SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(queryStringQuery("1")).withPageable(pageable).build();
+//        elasticsearchTemplate.queryForList(searchQuery, Content.class);
+
         BmsUser user = bmsUserService.getById(1);
         return user.getLoginName();
 //        return "abc1";
